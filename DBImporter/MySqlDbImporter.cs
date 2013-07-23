@@ -13,7 +13,8 @@ namespace AccessDbImporter
 {
     public class MySqlDbImporter : IReader
     {
-        
+       public string DBName { get; set; }
+
         private MySqlConnection connection;
 
         private MySqlDataReader readr;

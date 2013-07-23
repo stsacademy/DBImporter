@@ -10,6 +10,8 @@ namespace DBImporter
     {
         string ConnectionString { get; set; }
 
+        string DBName { get; set; }
+
         void OpenConnection();
 
         void CloseConnection();

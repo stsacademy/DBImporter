@@ -48,7 +48,7 @@ namespace DBImporter
             InitializeComponent();
 
             btnBack.Enabled = false;
-            btnNext.Enabled = true;
+            btnNext.Enabled = false;
 
             userControls = new UserControl[] { selectDbUserControl, selectionUserControl, startUserControl };
 
@@ -83,9 +83,9 @@ namespace DBImporter
                 connectionString = "SERVER=127.0.0.1;" + "DATABASE=" + dataBase + ";"
                 + "UID=root;" + "PASSWORD=1234;";
 
-                if (selectDbUserControl.cbDatabase.SelectedText == "Access")
+                if (selectDbUserControl.cbDatabase.Text == "Access")
                     reader = new AccessReader(@"Provider=Microsoft.ACE.Oledb.12.0;Data Source=" + filePath);
-                else if (selectDbUserControl.cbDatabase.SelectedText == "MySQL")
+                else if (selectDbUserControl.cbDatabase.Text == "MySQL")
                     reader = new MySqlDbImporter(connectionString);
 
                 writter.Log += EventHandler;

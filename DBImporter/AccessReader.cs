@@ -13,6 +13,8 @@ namespace DBImporter
     {
         private OleDbConnection connection;
 
+        public string DBName { get; set; }
+
         public string ConnectionString { get; set; }
 
         public OleDbConnection Connection { get { return this.connection; } }
@@ -74,15 +76,12 @@ namespace DBImporter
             string query = string.Format("Select {0} FROM {1};", _fields, tableName);
 
             OleDbCommand command = new OleDbCommand(query, connection);
-            using (OleDbDataReader reader = command.ExecuteReader())
-            {
-                while (reader.Read())
-                {
-                    for (int i = 0; i < reader.FieldCount; i++)
-                        types.Add(reader.GetFieldType(i));
-                }
 
-            }
+            OleDbDataReader reader = command.ExecuteReader();
+
+            for (int i = 0; i < reader.FieldCount; i++)
+                types.Add(reader.GetFieldType(i));
+
             return types.ToArray();
         }
 
