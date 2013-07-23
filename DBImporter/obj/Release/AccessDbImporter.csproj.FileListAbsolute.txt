@@ -1,0 +1,19 @@
+\\STUDENT-1\Shared Folder\AcessDbImporter\AcessDbImporter\bin\Release\AccessDbImporter.exe.config
+\\STUDENT-1\Shared Folder\AcessDbImporter\AcessDbImporter\bin\Release\AccessDbImporter.exe
+\\STUDENT-1\Shared Folder\AcessDbImporter\AcessDbImporter\bin\Release\AccessDbImporter.pdb
+\\STUDENT-1\Shared Folder\AcessDbImporter\AcessDbImporter\bin\Release\STSdb4.dll
+\\STUDENT-1\Shared Folder\AcessDbImporter\AcessDbImporter\bin\Release\STSdb4.pdb
+\\STUDENT-1\Shared Folder\AcessDbImporter\AcessDbImporter\obj\Release\AcessDbImporter.AboutBox.resources
+\\STUDENT-1\Shared Folder\AcessDbImporter\AcessDbImporter\obj\Release\AcessDbImporter.StartUserControl.resources
+\\STUDENT-1\Shared Folder\AcessDbImporter\AcessDbImporter\obj\Release\AcessDbImporter.MainForm.resources
+\\STUDENT-1\Shared Folder\AcessDbImporter\AcessDbImporter\obj\Release\AccessDbImporter.Properties.Resources.resources
+\\STUDENT-1\Shared Folder\AcessDbImporter\AcessDbImporter\obj\Release\AcessDbImporter.SelectDbUserControl.resources
+\\STUDENT-1\Shared Folder\AcessDbImporter\AcessDbImporter\obj\Release\AcessDbImporter.SelectionUserControl.resources
+\\STUDENT-1\Shared Folder\AcessDbImporter\AcessDbImporter\obj\Release\AccessDbImporter.csproj.GenerateResource.Cache
+\\STUDENT-1\Shared Folder\AcessDbImporter\AcessDbImporter\obj\Release\AccessDbImporter.exe
+\\STUDENT-1\Shared Folder\AcessDbImporter\AcessDbImporter\obj\Release\AccessDbImporter.pdb
+\\STUDENT-1\Shared Folder\AcessDbImporter\AcessDbImporter\obj\Release\AccessDbImporter.csprojResolveAssemblyReference.cache
+\\STUDENT-1\Shared Folder\AcessDbImporter\AcessDbImporter\bin\Release\mysql.data.dll
+D:\DBImporter\AcessDbImporter\AcessDbImporter\bin\Release\AccessDbImporter.exe.config
+D:\DBImporter\AcessDbImporter\AcessDbImporter\obj\Release\AccessDbImporter.exe
+D:\DBImporter\AcessDbImporter\AcessDbImporter\obj\Release\AccessDbImporter.pdb

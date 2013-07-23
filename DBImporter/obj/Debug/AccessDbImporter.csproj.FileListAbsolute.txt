@@ -1,0 +1,30 @@
+C:\Users\sft.student2\Documents\Visual Studio 2012\Projects\AcessDbImporter\AcessDbImporter\obj\Debug\AccessDbImporter.csprojResolveAssemblyReference.cache
+C:\Users\sft.student2\Documents\Visual Studio 2012\Projects\AcessDbImporter\AcessDbImporter\obj\Debug\AcessDbImporter.MainForm.resources
+C:\Users\sft.student2\Documents\Visual Studio 2012\Projects\AcessDbImporter\AcessDbImporter\obj\Debug\AcessDbImporter.Properties.Resources.resources
+C:\Users\sft.student2\Documents\Visual Studio 2012\Projects\AcessDbImporter\AcessDbImporter\obj\Debug\AcessDbImporter.selectDbUserControl.resources
+C:\Users\sft.student2\Documents\Visual Studio 2012\Projects\AcessDbImporter\AcessDbImporter\obj\Debug\AccessDbImporter.csproj.GenerateResource.Cache
+C:\Users\sft.student2\Documents\Visual Studio 2012\Projects\AcessDbImporter\AcessDbImporter\obj\Debug\AcessDbImporter.exe
+C:\Users\sft.student2\Documents\Visual Studio 2012\Projects\AcessDbImporter\AcessDbImporter\bin\Debug\AcessDbImporter.exe.config
+C:\Users\sft.student2\Documents\Visual Studio 2012\Projects\AcessDbImporter\AcessDbImporter\bin\Debug\AcessDbImporter.exe
+C:\Users\sft.student2\Documents\Visual Studio 2012\Projects\AcessDbImporter\AcessDbImporter\bin\Debug\AcessDbImporter.pdb
+C:\Users\sft.student2\Documents\Visual Studio 2012\Projects\AcessDbImporter\AcessDbImporter\bin\Debug\STSdb4.dll
+C:\Users\sft.student2\Documents\Visual Studio 2012\Projects\AcessDbImporter\AcessDbImporter\obj\Debug\AcessDbImporter.pdb
+C:\Users\sft.student2\Documents\Visual Studio 2012\Projects\AcessDbImporter\AcessDbImporter\obj\Debug\AcessDbImporter.selectionUserControl.resources
+C:\Users\sft.student2\Documents\Visual Studio 2012\Projects\AcessDbImporter\AcessDbImporter\obj\Debug\AcessDbImporter.StartUserControl.resources
+C:\Users\sft.student2\Documents\Visual Studio 2012\Projects\AcessDbImporter\AcessDbImporter\obj\Debug\AcessDbImporter.AboutBox.resources
+C:\Users\sft.student2\Documents\Visual Studio 2012\Projects\AcessDbImporter\AcessDbImporter\bin\Debug\STSdb4.pdb
+\\STUDENT-1\Shared Folder\AcessDbImporter\AcessDbImporter\obj\Debug\AccessDbImporter.csprojResolveAssemblyReference.cache
+\\STUDENT-1\Shared Folder\AcessDbImporter\AcessDbImporter\obj\Debug\AcessDbImporter.AboutBox.resources
+\\STUDENT-1\Shared Folder\AcessDbImporter\AcessDbImporter\obj\Debug\AcessDbImporter.StartUserControl.resources
+\\STUDENT-1\Shared Folder\AcessDbImporter\AcessDbImporter\obj\Debug\AcessDbImporter.MainForm.resources
+\\STUDENT-1\Shared Folder\AcessDbImporter\AcessDbImporter\obj\Debug\AcessDbImporter.SelectDbUserControl.resources
+\\STUDENT-1\Shared Folder\AcessDbImporter\AcessDbImporter\obj\Debug\AcessDbImporter.SelectionUserControl.resources
+\\STUDENT-1\Shared Folder\AcessDbImporter\AcessDbImporter\obj\Debug\AccessDbImporter.csproj.GenerateResource.Cache
+\\STUDENT-1\Shared Folder\AcessDbImporter\AcessDbImporter\bin\Debug\STSdb4.dll
+\\STUDENT-1\Shared Folder\AcessDbImporter\AcessDbImporter\bin\Debug\STSdb4.pdb
+\\STUDENT-1\Shared Folder\AcessDbImporter\AcessDbImporter\bin\Debug\AccessDbImporter.exe.config
+\\STUDENT-1\Shared Folder\AcessDbImporter\AcessDbImporter\bin\Debug\AccessDbImporter.exe
+\\STUDENT-1\Shared Folder\AcessDbImporter\AcessDbImporter\bin\Debug\AccessDbImporter.pdb
+\\STUDENT-1\Shared Folder\AcessDbImporter\AcessDbImporter\obj\Debug\AccessDbImporter.Properties.Resources.resources
+\\STUDENT-1\Shared Folder\AcessDbImporter\AcessDbImporter\obj\Debug\AccessDbImporter.exe
+\\STUDENT-1\Shared Folder\AcessDbImporter\AcessDbImporter\obj\Debug\AccessDbImporter.pdb
