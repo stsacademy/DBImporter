@@ -17,12 +17,6 @@ namespace DBImporter
         public SelectDbUserControl()
         {
             InitializeComponent();
-        }
-
-        private void groupBox1_Enter(object sender, EventArgs e)
-        {
-
-        }
-
+        }        
     }
 }

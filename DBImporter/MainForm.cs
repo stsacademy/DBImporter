@@ -14,9 +14,9 @@ using AccessDbImporter;
 
 
 namespace DBImporter
-{    
+{
     public partial class MainForm : Form
-    {      
+    {
         private string dataBase;
 
         private string connectionString { get; set; }
@@ -31,12 +31,11 @@ namespace DBImporter
         SelectDbUserControl selectDbUserControl = new SelectDbUserControl();
         SelectionUserControl selectionUserControl = new SelectionUserControl();
 
+        IReader reader;
 
-        AccessReader reader;
-        MySqlDbImporter importer;
         LogAnalyzer analyzer = new LogAnalyzer();
 
-       // STSDbWritter writter = new STSDbWritter(null, @"D:\", @"D:\", null);
+        STSDbWritter writter = new STSDbWritter(null, @"C:\", @"C:\", null);
 
         int index = 0;
 
@@ -47,7 +46,7 @@ namespace DBImporter
         public MainForm()
         {
             InitializeComponent();
-            
+
             btnBack.Enabled = false;
             btnNext.Enabled = true;
 
@@ -68,40 +67,6 @@ namespace DBImporter
             Controls.Add(userControls[index]);
         }
 
-       /* private void btnOpen_Click(object sender, EventArgs e)
-        {
-            if (openFileDialog.ShowDialog() == DialogResult.OK)
-            {
-                filePath = openFileDialog.FileName;
-                selectDbUserControl.txbFilePath.Text = filePath;
-
-                reader = new AccessReader(@"Provider=Microsoft.ACE.Oledb.12.0;Data Source=" + filePath);
-         
-                writter.Log += EventHandler;
-
-                try
-                {
-                    reader.OpenConnection();
-                    writter.OnLog("INF", "Service", "Connected to database.", reader.ConnectionString);
-
-                    selectionUserControl.listBoxTableNames.Items.Clear();
-                    selectionUserControl.checkedListBoxFields.Items.Clear();
-                    selectedTables.Clear();
-                    foreach (var TableName in reader.GetTableNames())
-                    {
-                        selectionUserControl.listBoxTableNames.Items.Add(TableName);
-                    }
-                    if (selectDbUserControl.txbDbDir.Text != "")
-                        btnNext.Enabled = true;
-
-                }
-                catch (Exception ex)
-                {
-                    writter.OnLog("ERR", "Service", "Can't connect to database.", ex.ToString());
-                }
-            }
-        }*/
-
         private void btnOpen_Click(object sender, EventArgs e)
         {
             if (openFileDialog.ShowDialog() == DialogResult.OK)
@@ -114,25 +79,28 @@ namespace DBImporter
                 dataBase = System.IO.Path.GetFileName(filePath);
                 fileName = dataBase.Split('.');
                 dataBase = fileName[0];
-  
+
                 connectionString = "SERVER=127.0.0.1;" + "DATABASE=" + dataBase + ";"
                 + "UID=root;" + "PASSWORD=1234;";
 
-                importer = new MySqlDbImporter(connectionString);
+                if (selectDbUserControl.cbDatabase.SelectedText == "Access")
+                    reader = new AccessReader(@"Provider=Microsoft.ACE.Oledb.12.0;Data Source=" + filePath);
+                else if (selectDbUserControl.cbDatabase.SelectedText == "MySQL")
+                    reader = new MySqlDbImporter(connectionString);
 
-               // writter.Log += EventHandler;
+                writter.Log += EventHandler;
 
                 try
                 {
-                    importer.OpenConnection();
+                    reader.OpenConnection();
 
-                    //writter.OnLog("INF", "Service", "Connected to database.", reader.ConnectionString);
+                    writter.OnLog("INF", "Service", "Connected to database.", reader.ConnectionString);
 
                     selectionUserControl.listBoxTableNames.Items.Clear();
                     selectionUserControl.checkedListBoxFields.Items.Clear();
                     selectedTables.Clear();
 
-                    foreach (var TableName in importer.GetTableNames())
+                    foreach (var TableName in reader.GetTableNames())
                     {
                         selectionUserControl.listBoxTableNames.Items.Add(TableName);
                     }
@@ -143,11 +111,11 @@ namespace DBImporter
 
                 catch (Exception ex)
                 {
-                    //writter.OnLog("ERR", "Service", "Can't connect to database.", ex.ToString());
+                    writter.OnLog("ERR", "Service", "Can't connect to database.", ex.ToString());
                 }
             }
         }
-        
+
         private void btnBack_Click(object sender, EventArgs e)
         {
             Controls.Remove(userControls[index]);
@@ -155,7 +123,7 @@ namespace DBImporter
             Controls.Add(userControls[index]);
 
             btnNext.Enabled = true;
-            btnBack.Enabled = false;           
+            btnBack.Enabled = false;
         }
 
         private void btnNext_Click(object sender, EventArgs e)
@@ -170,10 +138,10 @@ namespace DBImporter
 
         private void listBoxTableNames_SelectedIndexChanged(object sender, EventArgs e)
         {
-            LoadData();            
+            LoadData();
         }
 
-       /* private void LoadData()
+        private void LoadData()
         {
             if (selectionUserControl.listBoxTableNames.SelectedIndex != -1)
             {
@@ -208,44 +176,7 @@ namespace DBImporter
                 flag = true;
             }
             else MessageBox.Show("Select table.");
-        }*/
-
-        private void LoadData()
-       {
-           if (selectionUserControl.listBoxTableNames.SelectedIndex != -1)
-           {
-               selectionUserControl.checkedListBoxFields.Items.Clear();
-
-               foreach (var data in selectedTables)
-               {
-                   if (selectionUserControl.listBoxTableNames.SelectedItem.ToString() == data.Key)
-                   {
-                       foreach (var field in data.Value)
-                       {
-                           selectionUserControl.checkedListBoxFields.Items.Add(field.GetName, field.GetState);
-
-                           if (field.GetState == true)
-                               btnNext.Enabled = true;
-                       }
-                       flag = false;
-                   }
-               }
-
-               if (flag == true)
-               {
-                   List<FieldSaver> columnList = new List<FieldSaver>();
-
-                   foreach (var field in importer.GetFieldNames(selectionUserControl.listBoxTableNames.SelectedItem.ToString()))
-                   {
-                       selectionUserControl.checkedListBoxFields.Items.Add(field.ToString());
-                       columnList.Add(new FieldSaver(field.ToString(), false));
-                   }
-                   selectedTables.Add(selectionUserControl.listBoxTableNames.SelectedItem.ToString(), columnList);
-               }
-               flag = true;
-           }
-           else MessageBox.Show("Select table.");
-       }
+        }
 
         private void checkedListBoxFields_ItemCheck(object sender, ItemCheckEventArgs e)
         {
@@ -280,7 +211,7 @@ namespace DBImporter
             analyzer.Analyze(message);
             LogingTextBox.AppendText(message + "\r\n");
         }
-  
+
         private void aboutToolStripMenuItem1_Click(object sender, EventArgs e)
         {
             new AboutBox().ShowDialog();
@@ -298,18 +229,18 @@ namespace DBImporter
         {
             if (reader != null)
                 reader.CloseConnection();
-        }   
+        }
 
         private void timer_Tick(object sender, EventArgs e)
-        {  
-           btnBack.Enabled = index > 0;
+        {
+            btnBack.Enabled = index > 0;
 
-           if (index > 1)
-               btnNext.Enabled = false;
+            if (index > 1)
+                btnNext.Enabled = false;
 
-           startUserControl.btnStart.Enabled = !analyzer.IsWorking;
+            startUserControl.btnStart.Enabled = !analyzer.IsWorking;
 
-           startUserControl.label2.Text = analyzer.TableCount.ToString();
+            startUserControl.label2.Text = analyzer.TableCount.ToString();
         }
 
         public void btnBrowse_Click(object sender, EventArgs e)
@@ -329,7 +260,7 @@ namespace DBImporter
             for (int i = 0; i < selectionUserControl.checkedListBoxFields.Items.Count; i++)
             {
                 selectionUserControl.checkedListBoxFields.SelectedItem = selectionUserControl.checkedListBoxFields.Items[i];
-                selectionUserControl.checkedListBoxFields.SetItemChecked(i, true);             
+                selectionUserControl.checkedListBoxFields.SetItemChecked(i, true);
             }
         }
 
@@ -349,7 +280,7 @@ namespace DBImporter
         {
             if (selectionUserControl.checkedListBoxFields.CheckedItems.Count != 0)
             {
-                STSDbWritter writter = new STSDbWritter(importer, filePath, dbDir, selectedTables);
+                STSDbWritter writter = new STSDbWritter(reader, filePath, dbDir, selectedTables);
                 writter.Log += EventHandler;
                 writter.Start();
             }
