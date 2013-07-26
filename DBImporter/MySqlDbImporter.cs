@@ -13,19 +13,19 @@ namespace AccessDbImporter
 {
     public class MySqlDbImporter : IReader
     {
-       public string DBName { get; set; }
+        public string DBName { get; set; }     
+
+        public string ConnectionString { get; set; }
 
         private MySqlConnection connection;
 
         private MySqlDataReader readr;
-
-        public string ConnectionString { get; set; }
-
+       
         public MySqlConnection Connection { get { return this.connection; } }
 
-        public MySqlDbImporter(string connectionString)
+        public MySqlDbImporter(string connStr)
         {
-            ConnectionString = connectionString;
+            ConnectionString = connStr;
         }
 
         public void OpenConnection()

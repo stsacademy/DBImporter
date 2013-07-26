@@ -14,3 +14,5 @@ D:\DBImporter\DBImporter\obj\Debug\DBImporter.SelectionUserControl.resources
 D:\DBImporter\DBImporter\obj\Debug\DBImporter.csproj.GenerateResource.Cache
 D:\DBImporter\DBImporter\obj\Debug\DBImporter.exe
 D:\DBImporter\DBImporter\obj\Debug\DBImporter.pdb
+D:\DBImporter\DBImporter\obj\Debug\DBImporter.StringBuilderUserControl.resources
+D:\DBImporter\DBImporter\obj\Debug\DBImporter.OpenDBUserControl.resources

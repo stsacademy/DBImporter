@@ -14,7 +14,7 @@ namespace DBImporter
         private OleDbConnection connection;
 
         public string DBName { get; set; }
-
+       
         public string ConnectionString { get; set; }
 
         public OleDbConnection Connection { get { return this.connection; } }

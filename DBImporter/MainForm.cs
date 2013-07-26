@@ -17,10 +17,6 @@ namespace DBImporter
 {
     public partial class MainForm : Form
     {
-        private string dataBase;
-
-        private string connectionString { get; set; }
-
         private string filePath { get; set; }
 
         private string dbDir { get; set; }
@@ -28,8 +24,10 @@ namespace DBImporter
         UserControl[] userControls;
 
         StartUserControl startUserControl = new StartUserControl();
-        SelectDbUserControl selectDbUserControl = new SelectDbUserControl();
+        OpenDBUserControl openDBUserControl = new OpenDBUserControl();
         SelectionUserControl selectionUserControl = new SelectionUserControl();
+        SelectDBUserControl selectDBUserControl = new SelectDBUserControl();
+        StringBuilderUserControl stringBuilderUserControl = new StringBuilderUserControl();
 
         IReader reader;
 
@@ -50,16 +48,52 @@ namespace DBImporter
             btnBack.Enabled = false;
             btnNext.Enabled = false;
 
-            userControls = new UserControl[] { selectDbUserControl, selectionUserControl, startUserControl };
+            userControls = new UserControl[] { selectDBUserControl, openDBUserControl, selectionUserControl, startUserControl, stringBuilderUserControl };
 
-            selectDbUserControl.btnOpen.Click += btnOpen_Click;
-            selectDbUserControl.btnBrowse.Click += btnBrowse_Click;
+            openDBUserControl.btnOpen.Click += btnOpen_Click;
+            openDBUserControl.btnBrowse.Click += btnBrowse_Click;
 
             selectionUserControl.listBoxTableNames.SelectedValueChanged += listBoxTableNames_SelectedIndexChanged;
             selectionUserControl.checkedListBoxFields.ItemCheck += checkedListBoxFields_ItemCheck;
             selectionUserControl.checkedListBoxFields.SelectedIndexChanged += checkedListBoxFields_SelectedIndexChanged;
             startUserControl.btnStart.Click += btnStart_Click;
             selectionUserControl.btnSelect.Click += btnSelect_Click;
+            openDBUserControl.btnSett.Click += btnSet_Click;
+            stringBuilderUserControl.btnSet.Click += btnSett_Click;
+            selectDBUserControl.rbAccess.CheckedChanged += rbAccess_CheckedChanged;
+            selectDBUserControl.rbMySQL.CheckedChanged += rbMySQL_CheckedChanged;
+
+        }
+
+        void rbMySQL_CheckedChanged(object sender, EventArgs e)
+        {
+            if (selectDBUserControl.rbMySQL.Checked == true)
+                btnNext.Enabled = true;             
+        }
+
+        void rbAccess_CheckedChanged(object sender, EventArgs e)
+        {
+            if(selectDBUserControl.rbAccess.Checked==true)
+                btnNext.Enabled = true;           
+        }
+
+        private void btnSett_Click(object sender, EventArgs e)
+        {
+            StringBuilder connStr = new StringBuilder();
+            connStr.Append("Server=" + stringBuilderUserControl.txtBxServer.Text + ";" + "Database=" + stringBuilderUserControl.txtBxDatabase.Text +
+                ";" + "UID=" + stringBuilderUserControl.txtBxuID.Text + ";" + "Password=" + stringBuilderUserControl.txtBxPassword.Text + ";");
+            openDBUserControl.txtBxConnStr.Text = connStr.ToString();
+
+            Controls.Remove(userControls[4]);
+            index = 1;
+            Controls.Add(userControls[index]);
+        }
+
+        private void btnSet_Click(object sender, EventArgs e)
+        {
+            Controls.Remove(userControls[1]);
+            index = 4;
+            Controls.Add(userControls[index]);
         }
 
         private void MainForm_Load(object sender, EventArgs e)
@@ -69,25 +103,33 @@ namespace DBImporter
 
         private void btnOpen_Click(object sender, EventArgs e)
         {
-            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            if (selectDBUserControl.rbAccess.Checked == true)
             {
-                string[] fileName;
-
-                filePath = openFileDialog.FileName;
-                selectDbUserControl.txbFilePath.Text = filePath;
-
-                dataBase = System.IO.Path.GetFileName(filePath);
-                fileName = dataBase.Split('.');
-                dataBase = fileName[0];
-
-                connectionString = "SERVER=127.0.0.1;" + "DATABASE=" + dataBase + ";"
-                + "UID=root;" + "PASSWORD=1234;";
-
-                if (selectDbUserControl.cbDatabase.Text == "Access")
+                openFileDialog.InitialDirectory = "D:\\";
+                openFileDialog.Filter = "Access(*.mdb;*.accdb)|*.mdb;*.accdb;*.";               
+            }
+            else
+            {
+                openFileDialog.InitialDirectory = "D:\\";
+                openFileDialog.Filter = "MySql(*.mwb)|*.mwb;*.";               
+            }
+            
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            {                         
+                if (selectDBUserControl.rbAccess.Checked == true)
+                {
+                    filePath = openFileDialog.FileName;
+                    openDBUserControl.txbFilePath.Text = filePath;
                     reader = new AccessReader(@"Provider=Microsoft.ACE.Oledb.12.0;Data Source=" + filePath);
-                else if (selectDbUserControl.cbDatabase.Text == "MySQL")
+                }
+                else 
+                {
+                    string database = stringBuilderUserControl.txtBxDatabase.Text;
+                    openDBUserControl.txbFilePath.Text = database;
+                    string connectionString = openDBUserControl.txtBxConnStr.Text;
                     reader = new MySqlDbImporter(connectionString);
-
+                }      
+                
                 writter.Log += EventHandler;
 
                 try
@@ -105,7 +147,7 @@ namespace DBImporter
                         selectionUserControl.listBoxTableNames.Items.Add(TableName);
                     }
 
-                    if (selectDbUserControl.txbDbDir.Text != "")
+                    if (openDBUserControl.txbDbDir.Text != "")
                         btnNext.Enabled = true;
                 }
 
@@ -118,22 +160,37 @@ namespace DBImporter
 
         private void btnBack_Click(object sender, EventArgs e)
         {
-            Controls.Remove(userControls[index]);
-            index--;
-            Controls.Add(userControls[index]);
+            if (index == 4)
+            {
+                Controls.Remove(userControls[4]);
+                index = 1;
+                Controls.Add(userControls[index]);
+            }
+            else
+            {
+                Controls.Remove(userControls[index]);
+                index--;
+                Controls.Add(userControls[index]);
 
-            btnNext.Enabled = true;
-            btnBack.Enabled = false;
+                btnNext.Enabled = true;
+                btnBack.Enabled = false;
+            }
         }
 
         private void btnNext_Click(object sender, EventArgs e)
         {
+            btnNext.Enabled = false;
+
             Controls.Remove(userControls[index]);
             index++;
             Controls.Add(userControls[index]);
 
-            btnNext.Enabled = false;
-
+            if (selectDBUserControl.rbAccess.Checked == true)
+            {
+                openDBUserControl.txtBxConnStr.Enabled = false;
+                openDBUserControl.btnSett.Enabled = false;
+                openDBUserControl.lblConnStr.Enabled = false;
+            }
         }
 
         private void listBoxTableNames_SelectedIndexChanged(object sender, EventArgs e)
@@ -232,10 +289,10 @@ namespace DBImporter
         }
 
         private void timer_Tick(object sender, EventArgs e)
-        {
+        {          
             btnBack.Enabled = index > 0;
 
-            if (index > 1)
+            if (index > 2)
                 btnNext.Enabled = false;
 
             startUserControl.btnStart.Enabled = !analyzer.IsWorking;
@@ -248,9 +305,9 @@ namespace DBImporter
             if (folderBrowserDialog.ShowDialog() == DialogResult.OK)
             {
                 dbDir = folderBrowserDialog.SelectedPath;
-                selectDbUserControl.txbDbDir.Text = dbDir;
+                openDBUserControl.txbDbDir.Text = dbDir;
 
-                if (selectDbUserControl.txbFilePath.Text != "")
+                if (openDBUserControl.txbFilePath.Text != "")
                     btnNext.Enabled = true;
             }
         }

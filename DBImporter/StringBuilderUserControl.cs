@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace DBImporter
 {
-    public partial class SelectDBUserControl : UserControl
+    public partial class StringBuilderUserControl : UserControl
     {
-        public SelectDBUserControl()
+        public StringBuilderUserControl()
         {
             InitializeComponent();
         }
