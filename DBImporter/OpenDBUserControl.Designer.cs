@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.label3 = new System.Windows.Forms.Label();
+            this.lblSTSConnStr = new System.Windows.Forms.Label();
             this.txtBxSTSConnStr = new System.Windows.Forms.TextBox();
             this.lblConnStr = new System.Windows.Forms.Label();
             this.txtBxConnStr = new System.Windows.Forms.TextBox();
@@ -44,7 +44,7 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.label3);
+            this.groupBox1.Controls.Add(this.lblSTSConnStr);
             this.groupBox1.Controls.Add(this.txtBxSTSConnStr);
             this.groupBox1.Controls.Add(this.lblConnStr);
             this.groupBox1.Controls.Add(this.txtBxConnStr);
@@ -61,14 +61,14 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Step1: Select database,  file to import and directory for the new database...";
             // 
-            // label3
+            // lblSTSConnStr
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(11, 119);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(127, 13);
-            this.label3.TabIndex = 17;
-            this.label3.Text = "STSdb connection string:";
+            this.lblSTSConnStr.AutoSize = true;
+            this.lblSTSConnStr.Location = new System.Drawing.Point(11, 119);
+            this.lblSTSConnStr.Name = "lblSTSConnStr";
+            this.lblSTSConnStr.Size = new System.Drawing.Size(127, 13);
+            this.lblSTSConnStr.TabIndex = 17;
+            this.lblSTSConnStr.Text = "STSdb connection string:";
             // 
             // txtBxSTSConnStr
             // 
@@ -169,7 +169,7 @@
         internal System.Windows.Forms.TextBox txbFilePath;
         internal System.Windows.Forms.TextBox txtBxConnStr;
         internal System.Windows.Forms.Label lblConnStr;
-        internal System.Windows.Forms.Label label3;
+        internal System.Windows.Forms.Label lblSTSConnStr;
         internal System.Windows.Forms.TextBox txtBxSTSConnStr;
 
     }

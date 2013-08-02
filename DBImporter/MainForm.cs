@@ -92,13 +92,17 @@ namespace DBImporter
                 filePath = openFileDialog.FileName;
                 openDBUserControl.txbFilePath.Text = filePath;
 
-                if (selectDBUserControl.rbAccess.Checked == true)                                                    
+                if (selectDBUserControl.rbAccess.Checked == true)
+                {
                     reader = new AccessReader(@"Provider=Microsoft.ACE.Oledb.12.0;Data Source=" + filePath);
-                
-                else 
-                {                                             
+                    reader.DBName = "Access";
+                }
+
+                else
+                {
                     string connectionString = openDBUserControl.txtBxConnStr.Text;
                     reader = new MySqlDbImporter(connectionString);
+                    reader.DBName = "MySql";
                 }      
                 
                 writter.Log += EventHandler;
@@ -107,7 +111,7 @@ namespace DBImporter
                 {
                     reader.OpenConnection();
 
-                    writter.OnLog("INF", "Service", "Connected to database.", reader.ConnectionString);
+                    writter.OnLog("INF", "Service", "Database:" + reader.DBName, "Connected to database.");  
 
                     selectionUserControl.listBoxTableNames.Items.Clear();
                     selectionUserControl.checkedListBoxFields.Items.Clear();
@@ -124,6 +128,8 @@ namespace DBImporter
 
                 catch (Exception ex)
                 {
+                    btnNext.Enabled = false;
+                    openDBUserControl.txbFilePath.Text = "";
                     writter.OnLog("ERR", "Service", "Can't connect to database.", ex.ToString());
                 }
             }
@@ -272,28 +278,35 @@ namespace DBImporter
                 }
                 else
                 {
-                    if (selectDBUserControl.rbMySQL.Checked == true)
+                    try
                     {
-                        string[] server;
-                        server = openDBUserControl.txtBxSTSConnStr.Text.Split(';');
+                        if (selectDBUserControl.rbMySQL.Checked == true)
+                        {
+                            string[] server;
+                            server = openDBUserControl.txtBxSTSConnStr.Text.Split(';');
 
-                        Engine = STSdb.FromNetwork(server[0], Int32.Parse(server[1]));
+                            Engine = STSdb.FromNetwork(server[0], Int32.Parse(server[1]));
+                        }
+                        else
+                        {
+                            string[] server;
+                            server = openDBUserControl.txtBxSTSConnStr.Text.Split(';');
+
+                            Engine = STSdb.FromNetwork(server[0], Int32.Parse(server[1]));
+                        }
                     }
-                    else
+                    catch (Exception ex)
                     {
-                        string[] server;
-                        server = openDBUserControl.txtBxSTSConnStr.Text.Split(';');
-
-                        Engine = STSdb.FromNetwork(server[0], Int32.Parse(server[1]));
+                        writter.OnLog("ERR", "Service", "Unable to find the remote host.", ex.ToString());                           
                     }
                 }
+
+                writter = new STSDbWritter(reader, Engine, filePath, dbDir, selectedTables);
+                writter.Log += EventHandler;
+                writter.Start();
             }
 
-            else MessageBox.Show("Select fields to extract!");
-
-            writter = new STSDbWritter(reader, Engine, filePath, dbDir, selectedTables);
-            writter.Log += EventHandler;
-            writter.Start();
+            else MessageBox.Show("Select fields to extract!");          
         }       
          
         private void btnSelect_Click(object sender, EventArgs e)
@@ -350,6 +363,8 @@ namespace DBImporter
         {
             if (reader != null)
                 reader.CloseConnection();
+
+            Application.Exit();
         }
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
@@ -357,7 +372,7 @@ namespace DBImporter
             if (reader != null)
                 reader.CloseConnection();
 
-            Application.Exit();
+            Application.Exit();        
         }
 
         private void OnReportProgress(string message)
