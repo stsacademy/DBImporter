@@ -1,18 +1,1 @@
-D:\DBImporter\DBImporter\bin\Debug\DBImporter.exe.config
-D:\DBImporter\DBImporter\bin\Debug\DBImporter.exe
-D:\DBImporter\DBImporter\bin\Debug\DBImporter.pdb
-D:\DBImporter\DBImporter\bin\Debug\mysql.data.dll
-D:\DBImporter\DBImporter\bin\Debug\STSdb4.dll
-D:\DBImporter\DBImporter\bin\Debug\STSdb4.pdb
-D:\DBImporter\DBImporter\obj\Debug\DBImporter.csprojResolveAssemblyReference.cache
-D:\DBImporter\DBImporter\obj\Debug\DBImporter.AboutBox.resources
-D:\DBImporter\DBImporter\obj\Debug\DBImporter.StartUserControl.resources
-D:\DBImporter\DBImporter\obj\Debug\DBImporter.MainForm.resources
-D:\DBImporter\DBImporter\obj\Debug\DBImporter.Properties.Resources.resources
-D:\DBImporter\DBImporter\obj\Debug\DBImporter.SelectDbUserControl.resources
-D:\DBImporter\DBImporter\obj\Debug\DBImporter.SelectionUserControl.resources
-D:\DBImporter\DBImporter\obj\Debug\DBImporter.csproj.GenerateResource.Cache
-D:\DBImporter\DBImporter\obj\Debug\DBImporter.exe
-D:\DBImporter\DBImporter\obj\Debug\DBImporter.pdb
-D:\DBImporter\DBImporter\obj\Debug\DBImporter.StringBuilderUserControl.resources
-D:\DBImporter\DBImporter\obj\Debug\DBImporter.OpenDBUserControl.resources
+D:\STS Tools\DBImporter\DBImporter\bin\Debug\DBImporter.exe.config
