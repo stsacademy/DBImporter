@@ -1,1 +1,0 @@
-D:\STS Tools\DBImporter\DBImporter\bin\Debug\DBImporter.exe.config
