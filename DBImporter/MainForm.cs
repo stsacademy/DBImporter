@@ -12,7 +12,7 @@ using STSdb4;
 using System.Threading;
 using AccessDbImporter;
 
-//
+// MainForm
 namespace DBImporter
 {
     public partial class MainForm : Form
