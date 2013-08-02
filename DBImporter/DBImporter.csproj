@@ -117,9 +117,6 @@
     <Compile Include="IReader.cs" />
     <Compile Include="LogAnalyzer.cs" />
     <Compile Include="MySqlDbImporter.cs" />
-    <Compile Include="obj\Debug\TemporaryGeneratedFile_036C0B5B-1481-4323-8D20-8F5ADCB23D92.cs" />
-    <Compile Include="obj\Debug\TemporaryGeneratedFile_5937a670-0e60-4077-877b-f7221da3dda1.cs" />
-    <Compile Include="obj\Debug\TemporaryGeneratedFile_E7A71F73-0F8D-4B9B-B56E-8E70B10BC5D3.cs" />
     <Compile Include="StringBuilderUserControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -163,14 +160,6 @@
     <EmbeddedResource Include="AboutBox.resx">
       <DependentUpon>AboutBox.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="obj\Debug\DBImporter.AboutBox.resources" />
-    <EmbeddedResource Include="obj\Debug\DBImporter.MainForm.resources" />
-    <EmbeddedResource Include="obj\Debug\DBImporter.OpenDBUserControl.resources" />
-    <EmbeddedResource Include="obj\Debug\DBImporter.Properties.Resources.resources" />
-    <EmbeddedResource Include="obj\Debug\DBImporter.SelectDBUserControl.resources" />
-    <EmbeddedResource Include="obj\Debug\DBImporter.SelectionUserControl.resources" />
-    <EmbeddedResource Include="obj\Debug\DBImporter.StartUserControl.resources" />
-    <EmbeddedResource Include="obj\Debug\DBImporter.StringBuilderUserControl.resources" />
     <EmbeddedResource Include="StringBuilderUserControl.resx">
       <DependentUpon>StringBuilderUserControl.cs</DependentUpon>
     </EmbeddedResource>
@@ -199,12 +188,6 @@
     <EmbeddedResource Include="SelectionUserControl.resx">
       <DependentUpon>SelectionUserControl.cs</DependentUpon>
     </EmbeddedResource>
-    <None Include="bin\Debug\DBImporter.exe.config" />
-    <None Include="bin\Debug\DBImporter.vshost.exe.config" />
-    <None Include="bin\Debug\DBImporter.vshost.exe.manifest" />
-    <None Include="obj\Debug\DBImporter.csproj.GenerateResource.Cache" />
-    <None Include="obj\Debug\DBImporter.csprojResolveAssemblyReference.cache" />
-    <None Include="obj\Debug\DesignTimeResolveAssemblyReferencesInput.cache" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -235,20 +218,7 @@
       <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>
-  <ItemGroup>
-    <Content Include="bin\Debug\DBImporter.exe" />
-    <Content Include="bin\Debug\DBImporter.pdb" />
-    <Content Include="bin\Debug\DBImporter.vshost.exe" />
-    <Content Include="bin\Debug\mysql.data.dll" />
-    <Content Include="bin\Debug\STSdb4.dll" />
-    <Content Include="bin\Debug\STSdb4.pdb" />
-    <Content Include="obj\Debug\DBImporter.csproj.FileListAbsolute.txt" />
-    <Content Include="obj\Debug\DBImporter.exe" />
-    <Content Include="obj\Debug\DBImporter.pdb" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="obj\Debug\TempPE\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
