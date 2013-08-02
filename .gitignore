@@ -8,9 +8,9 @@
 
 # Build results and other unnecesary stuff
 *.exe
+*.exe.config
 *.dat
 *.sys
-*.config
 
 # Build results
 
