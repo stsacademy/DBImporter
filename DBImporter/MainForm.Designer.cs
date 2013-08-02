@@ -63,9 +63,9 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.gbLog.Controls.Add(this.LogingTextBox);
-            this.gbLog.Location = new System.Drawing.Point(12, 170);
+            this.gbLog.Location = new System.Drawing.Point(12, 185);
             this.gbLog.Name = "gbLog";
-            this.gbLog.Size = new System.Drawing.Size(482, 119);
+            this.gbLog.Size = new System.Drawing.Size(541, 156);
             this.gbLog.TabIndex = 5;
             this.gbLog.TabStop = false;
             this.gbLog.Text = "Log";
@@ -78,7 +78,7 @@
             this.LogingTextBox.Name = "LogingTextBox";
             this.LogingTextBox.ReadOnly = true;
             this.LogingTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.LogingTextBox.Size = new System.Drawing.Size(476, 100);
+            this.LogingTextBox.Size = new System.Drawing.Size(535, 137);
             this.LogingTextBox.TabIndex = 1;
             // 
             // groupBox1
@@ -86,7 +86,7 @@
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.groupBox1.Controls.Add(this.btnBack);
             this.groupBox1.Controls.Add(this.btnNext);
-            this.groupBox1.Location = new System.Drawing.Point(12, 295);
+            this.groupBox1.Location = new System.Drawing.Point(12, 347);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(162, 34);
             this.groupBox1.TabIndex = 4;
@@ -109,7 +109,7 @@
             this.aboutToolStripMenuItem});
             this.menuStrip.Location = new System.Drawing.Point(0, 0);
             this.menuStrip.Name = "menuStrip";
-            this.menuStrip.Size = new System.Drawing.Size(506, 24);
+            this.menuStrip.Size = new System.Drawing.Size(565, 24);
             this.menuStrip.TabIndex = 6;
             this.menuStrip.Text = "menuStrip1";
             // 
@@ -152,13 +152,13 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(506, 341);
+            this.ClientSize = new System.Drawing.Size(565, 393);
             this.Controls.Add(this.gbLog);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.menuStrip);
             this.DoubleBuffered = true;
             this.MainMenuStrip = this.menuStrip;
-            this.MinimumSize = new System.Drawing.Size(522, 379);
+            this.MinimumSize = new System.Drawing.Size(513, 379);
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Database Importer";

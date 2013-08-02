@@ -79,7 +79,7 @@
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.listBoxTableNames);
             this.groupBox1.Controls.Add(this.checkedListBoxFields);
-            this.groupBox1.Location = new System.Drawing.Point(13, 24);
+            this.groupBox1.Location = new System.Drawing.Point(12, 30);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(368, 148);
             this.groupBox1.TabIndex = 28;
@@ -88,9 +88,9 @@
             // 
             // btnSelect
             // 
-            this.btnSelect.Location = new System.Drawing.Point(387, 67);
+            this.btnSelect.Location = new System.Drawing.Point(427, 73);
             this.btnSelect.Name = "btnSelect";
-            this.btnSelect.Size = new System.Drawing.Size(75, 23);
+            this.btnSelect.Size = new System.Drawing.Size(88, 39);
             this.btnSelect.TabIndex = 29;
             this.btnSelect.Text = "Select all";
             this.btnSelect.UseVisualStyleBackColor = true;
@@ -102,7 +102,7 @@
             this.Controls.Add(this.btnSelect);
             this.Controls.Add(this.groupBox1);
             this.Name = "SelectionUserControl";
-            this.Size = new System.Drawing.Size(516, 219);
+            this.Size = new System.Drawing.Size(581, 193);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);

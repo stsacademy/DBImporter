@@ -29,7 +29,8 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.btnSett = new System.Windows.Forms.Button();
+            this.label3 = new System.Windows.Forms.Label();
+            this.txtBxSTSConnStr = new System.Windows.Forms.TextBox();
             this.lblConnStr = new System.Windows.Forms.Label();
             this.txtBxConnStr = new System.Windows.Forms.TextBox();
             this.btnOpen = new System.Windows.Forms.Button();
@@ -43,7 +44,8 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.btnSett);
+            this.groupBox1.Controls.Add(this.label3);
+            this.groupBox1.Controls.Add(this.txtBxSTSConnStr);
             this.groupBox1.Controls.Add(this.lblConnStr);
             this.groupBox1.Controls.Add(this.txtBxConnStr);
             this.groupBox1.Controls.Add(this.btnOpen);
@@ -52,41 +54,48 @@
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.btnBrowse);
             this.groupBox1.Controls.Add(this.txbFilePath);
-            this.groupBox1.Location = new System.Drawing.Point(12, 34);
+            this.groupBox1.Location = new System.Drawing.Point(12, 26);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(482, 131);
+            this.groupBox1.Size = new System.Drawing.Size(541, 156);
             this.groupBox1.TabIndex = 10;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Step1: Select database,  file to import and directory for the new database...";
             // 
-            // btnSett
+            // label3
             // 
-            this.btnSett.Location = new System.Drawing.Point(385, 88);
-            this.btnSett.Name = "btnSett";
-            this.btnSett.Size = new System.Drawing.Size(75, 23);
-            this.btnSett.TabIndex = 15;
-            this.btnSett.Text = "Set";
-            this.btnSett.UseVisualStyleBackColor = true;
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(11, 119);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(127, 13);
+            this.label3.TabIndex = 17;
+            this.label3.Text = "STSdb connection string:";
+            // 
+            // txtBxSTSConnStr
+            // 
+            this.txtBxSTSConnStr.Location = new System.Drawing.Point(143, 116);
+            this.txtBxSTSConnStr.Name = "txtBxSTSConnStr";
+            this.txtBxSTSConnStr.Size = new System.Drawing.Size(254, 20);
+            this.txtBxSTSConnStr.TabIndex = 16;
             // 
             // lblConnStr
             // 
             this.lblConnStr.AutoSize = true;
             this.lblConnStr.Location = new System.Drawing.Point(11, 93);
             this.lblConnStr.Name = "lblConnStr";
-            this.lblConnStr.Size = new System.Drawing.Size(89, 13);
+            this.lblConnStr.Size = new System.Drawing.Size(129, 13);
             this.lblConnStr.TabIndex = 14;
-            this.lblConnStr.Text = "Connection string";
+            this.lblConnStr.Text = "MySQL connection string:";
             // 
             // txtBxConnStr
             // 
-            this.txtBxConnStr.Location = new System.Drawing.Point(108, 90);
+            this.txtBxConnStr.Location = new System.Drawing.Point(143, 90);
             this.txtBxConnStr.Name = "txtBxConnStr";
             this.txtBxConnStr.Size = new System.Drawing.Size(254, 20);
             this.txtBxConnStr.TabIndex = 13;
             // 
             // btnOpen
             // 
-            this.btnOpen.Location = new System.Drawing.Point(385, 35);
+            this.btnOpen.Location = new System.Drawing.Point(433, 34);
             this.btnOpen.Name = "btnOpen";
             this.btnOpen.Size = new System.Drawing.Size(75, 23);
             this.btnOpen.TabIndex = 0;
@@ -96,7 +105,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(11, 38);
+            this.label1.Location = new System.Drawing.Point(11, 41);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(56, 13);
             this.label1.TabIndex = 2;
@@ -104,7 +113,7 @@
             // 
             // txbDbDir
             // 
-            this.txbDbDir.Location = new System.Drawing.Point(108, 64);
+            this.txbDbDir.Location = new System.Drawing.Point(143, 61);
             this.txbDbDir.Name = "txbDbDir";
             this.txbDbDir.ReadOnly = true;
             this.txbDbDir.Size = new System.Drawing.Size(254, 20);
@@ -121,7 +130,7 @@
             // 
             // btnBrowse
             // 
-            this.btnBrowse.Location = new System.Drawing.Point(385, 62);
+            this.btnBrowse.Location = new System.Drawing.Point(433, 61);
             this.btnBrowse.Name = "btnBrowse";
             this.btnBrowse.Size = new System.Drawing.Size(75, 23);
             this.btnBrowse.TabIndex = 6;
@@ -130,7 +139,7 @@
             // 
             // txbFilePath
             // 
-            this.txbFilePath.Location = new System.Drawing.Point(108, 38);
+            this.txbFilePath.Location = new System.Drawing.Point(143, 36);
             this.txbFilePath.Name = "txbFilePath";
             this.txbFilePath.ReadOnly = true;
             this.txbFilePath.Size = new System.Drawing.Size(254, 20);
@@ -142,7 +151,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.groupBox1);
             this.Name = "OpenDBUserControl";
-            this.Size = new System.Drawing.Size(501, 173);
+            this.Size = new System.Drawing.Size(556, 185);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
@@ -158,9 +167,10 @@
         private System.Windows.Forms.Label label2;
         internal System.Windows.Forms.Button btnBrowse;
         internal System.Windows.Forms.TextBox txbFilePath;
-        internal System.Windows.Forms.Button btnSett;
         internal System.Windows.Forms.TextBox txtBxConnStr;
         internal System.Windows.Forms.Label lblConnStr;
+        internal System.Windows.Forms.Label label3;
+        internal System.Windows.Forms.TextBox txtBxSTSConnStr;
 
     }
 }

@@ -37,7 +37,7 @@
             // 
             // btnStart
             // 
-            this.btnStart.Location = new System.Drawing.Point(6, 38);
+            this.btnStart.Location = new System.Drawing.Point(58, 38);
             this.btnStart.Name = "btnStart";
             this.btnStart.Size = new System.Drawing.Size(98, 39);
             this.btnStart.TabIndex = 0;
@@ -47,9 +47,9 @@
             // gbStart
             // 
             this.gbStart.Controls.Add(this.btnStart);
-            this.gbStart.Location = new System.Drawing.Point(17, 45);
+            this.gbStart.Location = new System.Drawing.Point(12, 53);
             this.gbStart.Name = "gbStart";
-            this.gbStart.Size = new System.Drawing.Size(222, 88);
+            this.gbStart.Size = new System.Drawing.Size(221, 110);
             this.gbStart.TabIndex = 2;
             this.gbStart.TabStop = false;
             this.gbStart.Text = "Step3: Push the button to start extracting the selected data...";
@@ -57,7 +57,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(315, 83);
+            this.label1.Location = new System.Drawing.Point(335, 91);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(89, 13);
             this.label1.TabIndex = 3;
@@ -66,7 +66,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(410, 83);
+            this.label2.Location = new System.Drawing.Point(430, 91);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(13, 13);
             this.label2.TabIndex = 4;
@@ -80,7 +80,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.gbStart);
             this.Name = "StartUserControl";
-            this.Size = new System.Drawing.Size(522, 139);
+            this.Size = new System.Drawing.Size(581, 181);
             this.gbStart.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();

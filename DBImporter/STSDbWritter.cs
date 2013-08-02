@@ -26,9 +26,11 @@ namespace DBImporter
 
         public string DbDir { get; private set; }
 
-        public STSDbWritter(IReader reader, string filePath, string dbDir, Dictionary<string, List<FieldSaver>> selectedTables)
+        public STSDbWritter(IReader reader, IStorageEngine engine, string filePath, string dbDir, Dictionary<string, List<FieldSaver>> selectedTables)
         {
             Reader = reader;
+
+            Engine = engine;
 
             FilePath = filePath;
 
@@ -51,7 +53,7 @@ namespace DBImporter
 
         private void DoWork()
         {
-            using (Engine = STSdb.FromFile(Path.Combine(DbDir, "stsdb4.sys"), Path.Combine(DbDir, "stsdb4.dat")))            
+            using (Engine)
             {
                 OnLog("INF", "Service", "Started", "New session started.");
                 OnLog("INF", "Service", "FilePath)", FilePath);
@@ -76,7 +78,7 @@ namespace DBImporter
 
                 OnLog("INF", "Service", "Progress", "Finished");
                 OnLog("----------------------------------------------------------------------------------------------------------");
-            }
+            }                    
         }
 
         private void StoreTable(string tableName, string[] fields, Type[] recordTypes)

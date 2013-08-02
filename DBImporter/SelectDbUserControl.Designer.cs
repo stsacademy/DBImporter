@@ -31,19 +31,23 @@
             this.gbSelectDB = new System.Windows.Forms.GroupBox();
             this.rbMySQL = new System.Windows.Forms.RadioButton();
             this.rbAccess = new System.Windows.Forms.RadioButton();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.rbLocal = new System.Windows.Forms.RadioButton();
+            this.rbServer = new System.Windows.Forms.RadioButton();
             this.gbSelectDB.SuspendLayout();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // gbSelectDB
             // 
             this.gbSelectDB.Controls.Add(this.rbMySQL);
             this.gbSelectDB.Controls.Add(this.rbAccess);
-            this.gbSelectDB.Location = new System.Drawing.Point(12, 39);
+            this.gbSelectDB.Location = new System.Drawing.Point(12, 53);
             this.gbSelectDB.Name = "gbSelectDB";
             this.gbSelectDB.Size = new System.Drawing.Size(105, 119);
             this.gbSelectDB.TabIndex = 0;
             this.gbSelectDB.TabStop = false;
-            this.gbSelectDB.Text = "SelectDB";
+            this.gbSelectDB.Text = "SelectDB...";
             // 
             // rbMySQL
             // 
@@ -65,15 +69,49 @@
             this.rbAccess.Text = "Access";
             this.rbAccess.UseVisualStyleBackColor = true;
             // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.rbLocal);
+            this.groupBox1.Controls.Add(this.rbServer);
+            this.groupBox1.Location = new System.Drawing.Point(123, 53);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(150, 119);
+            this.groupBox1.TabIndex = 1;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Select database location...";
+            // 
+            // rbLocal
+            // 
+            this.rbLocal.AutoSize = true;
+            this.rbLocal.Location = new System.Drawing.Point(24, 47);
+            this.rbLocal.Name = "rbLocal";
+            this.rbLocal.Size = new System.Drawing.Size(51, 17);
+            this.rbLocal.TabIndex = 1;
+            this.rbLocal.Text = "Local";
+            this.rbLocal.UseVisualStyleBackColor = true;
+            // 
+            // rbServer
+            // 
+            this.rbServer.AutoSize = true;
+            this.rbServer.Location = new System.Drawing.Point(24, 70);
+            this.rbServer.Name = "rbServer";
+            this.rbServer.Size = new System.Drawing.Size(56, 17);
+            this.rbServer.TabIndex = 0;
+            this.rbServer.Text = "Server";
+            this.rbServer.UseVisualStyleBackColor = true;
+            // 
             // SelectDBUserControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.gbSelectDB);
             this.Name = "SelectDBUserControl";
-            this.Size = new System.Drawing.Size(124, 166);
+            this.Size = new System.Drawing.Size(296, 203);
             this.gbSelectDB.ResumeLayout(false);
             this.gbSelectDB.PerformLayout();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -83,5 +121,8 @@
         private System.Windows.Forms.GroupBox gbSelectDB;
         internal System.Windows.Forms.RadioButton rbMySQL;
         internal System.Windows.Forms.RadioButton rbAccess;
+        private System.Windows.Forms.GroupBox groupBox1;
+        internal System.Windows.Forms.RadioButton rbLocal;
+        internal System.Windows.Forms.RadioButton rbServer;
     }
 }

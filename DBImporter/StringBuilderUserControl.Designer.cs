@@ -115,6 +115,7 @@
             // 
             this.txtBxPassword.Location = new System.Drawing.Point(88, 104);
             this.txtBxPassword.Name = "txtBxPassword";
+            this.txtBxPassword.PasswordChar = '*';
             this.txtBxPassword.Size = new System.Drawing.Size(121, 20);
             this.txtBxPassword.TabIndex = 11;
             // 
@@ -132,12 +133,12 @@
             this.txtBxDatabase.Size = new System.Drawing.Size(121, 20);
             this.txtBxDatabase.TabIndex = 9;
             // 
-            // MySQLDBUserControl
+            // StringBuilderUserControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.groupBox2);
-            this.Name = "MySQLDBUserControl";
+            this.Name = "StringBuilderUserControl";
             this.Size = new System.Drawing.Size(343, 180);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
