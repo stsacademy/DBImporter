@@ -13,7 +13,6 @@ using System.Threading;
 using AccessDbImporter;
 using System.IO;
 
-
 namespace DBImporter
 {
     public partial class MainForm : Form
@@ -29,7 +28,6 @@ namespace DBImporter
         SelectionUserControl selectionUserControl = new SelectionUserControl();
         SelectDBUserControl selectDBUserControl = new SelectDBUserControl();
         
-
         IStorageEngine Engine;
 
         IReader reader;
@@ -62,43 +60,13 @@ namespace DBImporter
             selectionUserControl.listBoxTableNames.SelectedValueChanged += listBoxTableNames_SelectedIndexChanged;
             selectionUserControl.checkedListBoxFields.ItemCheck += checkedListBoxFields_ItemCheck;
             selectionUserControl.checkedListBoxFields.SelectedIndexChanged += checkedListBoxFields_SelectedIndexChanged;
+
             startUserControl.btnStart.Click += btnStart_Click;
+
             selectionUserControl.btnSelect.Click += btnSelect_Click;          
             selectDBUserControl.rbAccess.CheckedChanged += rbAccess_CheckedChanged;
             selectDBUserControl.rbMySQL.CheckedChanged += rbMySQL_CheckedChanged;
 
-        }
-
-        private void rbMySQL_CheckedChanged(object sender, EventArgs e)
-        {
-            if (selectDBUserControl.rbMySQL.Checked == true)
-                btnNext.Enabled = true;             
-        }
-
-        private void rbAccess_CheckedChanged(object sender, EventArgs e)
-        {
-            if(selectDBUserControl.rbAccess.Checked==true)
-                btnNext.Enabled = true;           
-        }
-
-        private void btnCreate_Click(object sender, EventArgs e)
-        {
-            //StringBuilder connStr = new StringBuilder();
-            //connStr.Append("Server=" + stringBuilderUserControl.txtBxServer.Text + ";" + "Database=" + stringBuilderUserControl.txtBxDatabase.Text +
-            //    ";" + "UID=" + stringBuilderUserControl.txtBxuID.Text + ";" + "Password=" + stringBuilderUserControl.txtBxPassword.Text + ";");
-            //openDBUserControl.txtBxConnStr.Text = "";
-            //openDBUserControl.txtBxConnStr.Text = connStr.ToString();
-
-            //Controls.Remove(userControls[4]);
-            //index = 1;
-            //Controls.Add(userControls[index]);
-        }
-
-        private void btnSet_Click(object sender, EventArgs e)
-        {
-            //Controls.Remove(userControls[1]);
-            //index = 4;
-            //Controls.Add(userControls[index]);
         }
 
         private void MainForm_Load(object sender, EventArgs e)
@@ -161,6 +129,18 @@ namespace DBImporter
             }
         }
 
+        private void btnBrowse_Click(object sender, EventArgs e)
+        {
+            if (folderBrowserDialog.ShowDialog() == DialogResult.OK)
+            {
+                dbDir = folderBrowserDialog.SelectedPath;
+                openDBUserControl.txbDbDir.Text = dbDir;
+
+                if (openDBUserControl.txbFilePath.Text != "")
+                    btnNext.Enabled = true;
+            }
+        }
+
         private void btnBack_Click(object sender, EventArgs e)
         {
             Controls.Remove(userControls[index]);
@@ -174,27 +154,41 @@ namespace DBImporter
         private void btnNext_Click(object sender, EventArgs e)
         {           
             openDBUserControl.txtBxConnStr.Enabled = true;
-            openDBUserControl.txtBxSTSConnStr.Enabled = true;      
-      
+            openDBUserControl.txtBxSTSConnStr.Enabled = true;
+       
             if (selectDBUserControl.rbLocal.Checked == true)
-            {             
+            {
                 openDBUserControl.txtBxSTSConnStr.Enabled = false;
                 openDBUserControl.txtBxSTSConnStr.Text = "";
+
+                openDBUserControl.lblSTSConnStr.Enabled = false;
+                openDBUserControl.lblConnStr.Enabled = false;
             }
-            else openDBUserControl.txtBxSTSConnStr.Text = "localhost;7182";
+            else
+            {
+                openDBUserControl.txtBxSTSConnStr.Text = "localhost;7182";
+                openDBUserControl.lblSTSConnStr.Enabled = true;
+            }
 
             if (selectDBUserControl.rbAccess.Checked == true)
             {             
                 openDBUserControl.txtBxConnStr.Text = "";
-                openDBUserControl.txtBxConnStr.Enabled = false;                     
+                openDBUserControl.txtBxConnStr.Enabled = false;
+      
+                openDBUserControl.lblConnStr.Enabled = false;
             }
 
             else
-            {                           
+            {
+                openDBUserControl.lblConnStr.Enabled = true;               
                 openDBUserControl.txtBxConnStr.Text = "Server=localhost;Database=database;UID=root;Password=password;";
 
                 if (selectDBUserControl.rbLocal.Checked == false)
-                    openDBUserControl.txtBxSTSConnStr.Text = "localhost;7182";              
+                {
+                    openDBUserControl.txtBxSTSConnStr.Text = "localhost;7182";
+                    openDBUserControl.lblSTSConnStr.Enabled = true;
+                    openDBUserControl.lblConnStr.Enabled = true;
+                }
             }
 
             btnNext.Enabled = false;
@@ -268,60 +262,40 @@ namespace DBImporter
             }
         }
 
-        private void OnReportProgress(string message)
+        private void btnStart_Click(object sender, EventArgs e)
         {
-            Log(message);
-        }
-
-        private void Log(string message)
-        {
-            analyzer.Analyze(message);
-            LogingTextBox.AppendText(message + "\r\n");
-        }
-
-        private void aboutToolStripMenuItem1_Click(object sender, EventArgs e)
-        {
-            new AboutBox().ShowDialog();
-        }
-
-        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (reader != null)
-                reader.CloseConnection();
-
-            Application.Exit();
-        }
-
-        private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            if (reader != null)
-                reader.CloseConnection();
-        }
-
-        private void timer_Tick(object sender, EventArgs e)
-        {            
-            btnBack.Enabled = index > 0;
-
-            if (index > 2)
-                btnNext.Enabled = false;
-
-            startUserControl.btnStart.Enabled = !analyzer.IsWorking;
-
-            startUserControl.label2.Text = analyzer.TableCount.ToString();
-        }
-
-        private void btnBrowse_Click(object sender, EventArgs e)
-        {
-            if (folderBrowserDialog.ShowDialog() == DialogResult.OK)
+            if (selectionUserControl.checkedListBoxFields.CheckedItems.Count != 0)
             {
-                dbDir = folderBrowserDialog.SelectedPath;
-                openDBUserControl.txbDbDir.Text = dbDir;
+                if (selectDBUserControl.rbLocal.Checked == true)
+                {
+                    Engine = STSdb.FromFile(Path.Combine(dbDir, "stsdb4.sys"), Path.Combine(dbDir, "stsdb4.dat"));
+                }
+                else
+                {
+                    if (selectDBUserControl.rbMySQL.Checked == true)
+                    {
+                        string[] server;
+                        server = openDBUserControl.txtBxSTSConnStr.Text.Split(';');
 
-                if (openDBUserControl.txbFilePath.Text != "")
-                    btnNext.Enabled = true;
+                        Engine = STSdb.FromNetwork(server[0], Int32.Parse(server[1]));
+                    }
+                    else
+                    {
+                        string[] server;
+                        server = openDBUserControl.txtBxSTSConnStr.Text.Split(';');
+
+                        Engine = STSdb.FromNetwork(server[0], Int32.Parse(server[1]));
+                    }
+                }
             }
-        }
 
+            else MessageBox.Show("Select fields to extract!");
+
+            writter = new STSDbWritter(reader, Engine, filePath, dbDir, selectedTables);
+            writter.Log += EventHandler;
+            writter.Start();
+        }       
+         
         private void btnSelect_Click(object sender, EventArgs e)
         {
             for (int i = 0; i < selectionUserControl.checkedListBoxFields.Items.Count; i++)
@@ -341,40 +315,60 @@ namespace DBImporter
                         btnNext.Enabled = true;
                 }
             }
+        }    
+
+        private void rbMySQL_CheckedChanged(object sender, EventArgs e)
+        {
+            if (selectDBUserControl.rbMySQL.Checked == true)
+                btnNext.Enabled = true;
         }
 
-        private void btnStart_Click(object sender, EventArgs e)
+        private void rbAccess_CheckedChanged(object sender, EventArgs e)
         {
-            if (selectionUserControl.checkedListBoxFields.CheckedItems.Count != 0)
-            {
-                if(selectDBUserControl.rbLocal.Checked==true)     
-                {
-                    Engine = STSdb.FromFile(Path.Combine(dbDir, "stsdb4.sys"), Path.Combine(dbDir, "stsdb4.dat"));
-                }
-                else
-                {                    
-                    if (selectDBUserControl.rbMySQL.Checked == false)
-                    {
-                        string[] server;
-                        server = openDBUserControl.txtBxConnStr.Text.Split(';');
+            if (selectDBUserControl.rbAccess.Checked == true)
+                btnNext.Enabled = true;
+        }
 
-                        Engine = STSdb.FromNetwork(server[0], Int32.Parse(server[1]));
-                    }
-                    else
-                    {
-                        string[] server;
-                        server = openDBUserControl.txtBxSTSConnStr.Text.Split(';');
+        private void timer_Tick(object sender, EventArgs e)
+        {
+            btnBack.Enabled = index > 0;
 
-                        Engine = STSdb.FromNetwork(server[0], 7182);                      
-                    }                  
-                }                              
-            }
+            if (index > 2)
+                btnNext.Enabled = false;
 
-            else MessageBox.Show("Select fields to extract!");
-                
-            writter = new STSDbWritter(reader, Engine, filePath, dbDir, selectedTables);
-            writter.Log += EventHandler;
-            writter.Start();
+            startUserControl.btnStart.Enabled = !analyzer.IsWorking;
+
+            startUserControl.label2.Text = analyzer.TableCount.ToString();
+        }
+
+        private void aboutToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            new AboutBox().ShowDialog();
+        }      
+
+        private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (reader != null)
+                reader.CloseConnection();
+        }
+
+        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (reader != null)
+                reader.CloseConnection();
+
+            Application.Exit();
+        }
+
+        private void OnReportProgress(string message)
+        {
+            Log(message);
+        }
+
+        private void Log(string message)
+        {
+            analyzer.Analyze(message);
+            LogingTextBox.AppendText(message + "\r\n");
         }
 
         private void EventHandler(STSDbWritter sender, string msg)
